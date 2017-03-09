@@ -1,11 +1,11 @@
 console.log("first line in JS file", Date.now());
 
 var petFoodContainer = document.getElementById("petFoodDiv");
-
-function makeDogDom (xhrData) {
 var dogBrandString = "";
 var currentBrand; 
 var currentDogBrandType = "";
+
+function makeDogDom (xhrData) {
 	for(var i=0; i<xhrData.dog_brands.length; i++) {	
 		currentBrand = xhrData.dog_brands[i];
 		console.log(currentBrand);
@@ -14,8 +14,20 @@ var currentDogBrandType = "";
 		for(var j=0; j<xhrData.dog_brands[i].types.length; j++) { 
 			currentDogBrandType = xhrData.dog_brands[i].types[j]; // nested needs new index name or letter and need to need first for loop when doing second for loop
 			console.log(currentDogBrandType);	
+			for(var k=0; k<xhrData.dog_brands[i].types[j].volumes.length; k++) {
+				currentDogBrandTypeName = xhrData.dog_brands[i].types[j].volumes[k]; 
+				console.log("hi, let's see if it get here")
+			}
 		}
+
+		dogBrandString += `<h1>Brand: ${currentBrand.name}</h1>`
+		dogBrandString += `<h3>Type: ${currentDogBrandType.type}</h3>`
+		dogBrandString += `<h3>Type: ${currentDogBrandType.type}</h3>`
+		dogBrandString += `<h3>Type: ${currentDogBrandType.type}</h3>`
 	} 
+
+	petFoodContainer.innerHTML = dogBrandString;
+	console.log(makeDogDom);
 }
 
 // function makeDom(xhrData) {
