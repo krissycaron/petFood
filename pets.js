@@ -10,17 +10,17 @@ function makeDogDom (xhrData) {
 		currentBrand = xhrData.dog_brands[i];
 		console.log(currentBrand);
 		// eneter code into the thml and then copy it in here for how it should work ... 
-		dogBrandString += `<h1>Brand: ${currentBrand.name[i]}</h1>`;
+		dogBrandString += `<h1>Brand: ${currentBrand.name}</h1>`;
 		 
 		for(var j=0; j<xhrData.dog_brands[i].types.length; j++) { 
 			currentDogBrandType = xhrData.dog_brands[i].types[j]; // nested needs new index name or letter and need to need first for loop when doing second for loop
 			console.log(currentDogBrandType);	
-			dogBrandString += `<h3>Type:${currentDogBrandType.type[j]}</h3>`;
+			dogBrandString += `<h3>Type:${currentDogBrandType.type}</h3>`;
 			
 			for(var k=0; k<xhrData.dog_brands[i].types[j].volumes.length; k++) {
-				currentDogBrandTypeName = xhrData.dog_brands[i].types[j].volumes[k]; 
+				currentDogBrandVolume = xhrData.dog_brands[i].types[j].volumes[k]; 
 				console.log("hi, let's see if it get here")
-				dogBrandString += `<h3>:Price: ${currentDogBrandTypeName.volumes[k]}</h3>`;
+				dogBrandString += `<p>Price: ${currentDogBrandVolume.name} : ${currentDogBrandVolume.price}</p>`;
 			}
 		}
 
