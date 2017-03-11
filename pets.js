@@ -1,20 +1,22 @@
 console.log("first line in JS file", Date.now());
 
 var petFoodContainer = document.getElementById("petFoodDiv");
+// var petFoodContainerTwo = document.getElementById("petFoodDiv2");
 var dogBrandString = "";
 var catBrandString = "";
-var currentBrand; 
+var currentDogBrand;
+var currentCatBrand; 
 var currentDogBrandType = "";
 var currentCatBrandType = "";
 
 function makeDogDom (xhrData) {
 	for(var i=0; i<xhrData.dog_brands.length; i++) {	
-		currentBrand = xhrData.dog_brands[i];
-		console.log(currentBrand);
+		currentDogBrand = xhrData.dog_brands[i];
+		console.log(currentDogBrand);
 		// eneter code into the thml and then copy it in here for how it should work ... 
-		dogBrandString += `<h1>Brand: ${currentBrand.name}</h1>`;
+		dogBrandString += `<h1>Brand: ${currentDogBrand.name}</h1>`;
 		 
-		for(var j=0; j<xhrData.dog_brands[i].types.length; j++) { 
+		for(var j=0; j< xhrData.dog_brands[i].types.length; j++) { 
 			currentDogBrandType = xhrData.dog_brands[i].types[j]; // nested needs new index name or letter and need to need first for loop when doing second for loop
 			console.log(currentDogBrandType);	
 			dogBrandString += `<h3>Type:${currentDogBrandType.type}</h3>`;
@@ -35,8 +37,8 @@ function makeDogDom (xhrData) {
 
 function makeCatDom (xhrData) {
 	for(var i=0; i<xhrData.cat_brands.length; i++) {	
-		currentBrand = xhrData.cat_brands[i];
-		console.log(currentBrand);
+		currentCatBrand = xhrData.cat_brands[i];
+		console.log(currentCatBrand);
 		// eneter code into the thml and then copy it in here for how it should work ... 
 		catBrandString += `<h1>Brand: ${currentBrand.name}</h1>`;
 		 
@@ -55,8 +57,8 @@ function makeCatDom (xhrData) {
 		
 	} 
 
-	petFoodContainer.innerHTML = catBrandString;
-	console.log(makeDogDom);
+	petFoodContainerTwo.innerHTML = catBrandString;
+	console.log(makeCatDom);
 }
 
 function executeThisCodeAfterFileLoaded(){
@@ -64,7 +66,7 @@ function executeThisCodeAfterFileLoaded(){
 	var data =JSON.parse(this.responseText);
 	makeDogDom(data);
 	makeCatDom(data);
-	console.log(data);
+	console.log("here is the datat",data);
 }
 
 function executeThisCodeAfterFileFails(){
@@ -80,9 +82,9 @@ dogRequest.send();
 var catRequest = new XMLHttpRequest();
 catRequest.addEventListener("load", executeThisCodeAfterFileLoaded); // happens when the file has completed reading the JSON file
 catRequest.addEventListener("error", executeThisCodeAfterFileFails);
-catRequest.open("GET", "dogs.json"); 
+catRequest.open("GET", "cats.json"); 
 catRequest.send();
-
+// console.log(catRequest);
 
 
 console.log("last line in JS file", Date.now());
